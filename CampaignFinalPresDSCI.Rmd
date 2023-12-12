@@ -1,0 +1,117 @@
+---
+title: "Final Presentation"
+output: html_document
+date: "2023-10-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("C:/Users/candy/Downloads")
+load("Master.RData")
+```
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(RColorBrewer)
+library(sf)
+library(readxl)
+```
+
+```{r}
+#First I just made some quick graphs to get a look at the profile of who was living where in Cincinnati.
+#I looked at the average age of Cincinnati.
+combined5 %>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill=mean.age)) +
+  geom_sf()
+
+```
+```{r}
+#I looked at the amount of kids and where they were living. This could tell us about where families are living.
+#Our candidate is very family oriented so this was helpful in knowing where to campaign.
+combined5%>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill=total.kids)) +
+  geom_sf()
+
+```
+
+```{r}
+#I looked at median income in Cincinnati.
+combined5%>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill=med.income)) +
+  geom_sf()
+
+```
+
+```{r}
+#I looked at the white population in Cincinnati.
+combined5%>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill=white.pop)) +
+  geom_sf()
+
+
+```
+
+```{r}
+#Then I looked at the black population in Cincinnati.
+combined5%>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill=black.pop)) +
+  geom_sf()
+
+```
+```{r}
+#I looked at the number of ballots cast so we could get an idea on voter turnout.
+combined5%>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill=`BALLOTS CAST TOTAL`)) +
+  geom_sf()
+
+```
+```{r}
+#I also looked at just general poverty levels.
+combined5%>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill=poverty)) +
+  geom_sf()
+```
+
+```{r}
+#Our candidate was a first-time runner for city council so we didn't have previous election data for her.
+#At first we thought Jan-Michele Kearney alone would be a good
+#person to look at to be the model for how our candidate would do.
+
+combined5%>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill= `Jan-Michele Lemon Kearney`)) +
+  geom_sf()
+```
+
+
+```{r}
+#Upon looking at Kearney's graph, we decided that making a merged graph of Kearney and Jefferys since
+#we felt that Jefferys best represented our candidates residual and base and Kearney best represented our swing.
+combined5%>% 
+  filter(grepl(" CIN ",NAME)) %>% 
+  ggplot(aes(fill= `Mark       Jeffreys`)) +
+  geom_sf()
+#residual Jefferys 
+#base Jefferys
+#swing Kearney
+
+#We projected that our candidate would win the 9th place spot out of 9 seats on council. There were 10 people running.
+#She ended up winning 7th place, so our campaign was a success. 
+
+```
+
+
+
+
+
